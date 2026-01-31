@@ -192,20 +192,46 @@
     .card img { width: 100%; height: 300px; object-fit: contain; padding: 18px; transition: transform 0.45s; }
     .card:hover img { transform: scale(1.04); }
 
-    .admin-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--chai-red);
-      color: white;
-      border: none;
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      font-size: 1.6rem;
+    .review-summary {
       cursor: pointer;
-      box-shadow: 0 5px 16px rgba(165,42,42,0.45);
-      z-index: 999;
+      user-select: none;
+    }
+    .review-summary:hover {
+      text-decoration: underline;
+    }
+    .reviews-expanded {
+      text-align: left;
+      margin: 1.2rem 0;
+      padding: 1.2rem;
+      background: #fdf8f0;
+      border-radius: 12px;
+      border: 1px solid #eee;
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+    .reviews-expanded h4 {
+      color: var(--chai-red);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+    .review-item {
+      margin-bottom: 1.1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #f0e0d0;
+    }
+    .review-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .review-stars {
+      color: #ffb300;
+      margin-right: 0.5rem;
+    }
+    .review-meta {
+      color: #777;
+      font-size: 0.9rem;
+      margin-top: 0.4rem;
     }
 
     .why-section { text-align: center; }
@@ -254,28 +280,6 @@
       padding: 3.5rem 1.5rem;
       font-size: 1.2rem;
       position: relative;
-    }
-
-    #admin-panel, #admin-login {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.85);
-      z-index: 9999;
-      overflow-y: auto;
-      color: white;
-      padding: 2rem;
-      justify-content: center;
-      align-items: flex-start;
-    }
-    #admin-login .box {
-      background: white;
-      color: #333;
-      padding: 3rem;
-      border-radius: 16px;
-      text-align: center;
-      width: 90%;
-      max-width: 450px;
     }
 
     #enquiry-modal {
@@ -351,10 +355,6 @@
     }
     #submit-enquiry:hover { background: #8c1f1f; transform: translateY(-2px); }
 
-    /* ──────────────────────────────────────────────
-       RESPONSIVE IMPROVEMENTS
-    ────────────────────────────────────────────── */
-
     @media (max-width: 768px) {
       .sticky-nav { 
         flex-direction: column; 
@@ -375,7 +375,7 @@
       }
       .logo { height: 48px; margin-right: 0; }
       .hero { 
-        height: 65vh;          /* taller on tablets & phones */
+        height: 65vh;
         min-height: 420px; 
         padding-top: 50px; 
       }
@@ -390,7 +390,6 @@
       .btn-primary { padding: 1rem 2.2rem; font-size: 1.15rem; }
       body { padding-bottom: 100px; }
 
-      /* Pause carousel animation on mobile */
       .why-carousel-track { animation-play-state: paused; }
     }
 
@@ -415,7 +414,6 @@
       .modal-content { padding: 1.6rem; }
     }
 
-    /* Extra safety for very small phones (≤360px) */
     @media (max-width: 360px) {
       .hero { 
         height: 75vh;
@@ -428,82 +426,68 @@
       .nav-links { gap: 0.6rem; }
       .nav-links a { font-size: 0.95rem; padding: 0.5rem 0.6rem; }
     }
-	/* ─────────────────────────────
-   MOBILE VIEW BUTTON
-───────────────────────────── */
-.mobile-toggle-btn {
-  background: #fff;
-  color: var(--chai-red);
-  border: 2px solid var(--gold);
-  padding: 0.5rem 1.2rem;
-  border-radius: 30px;
-  font-weight: 700;
-  cursor: pointer;
-  font-size: 0.95rem;
-}
 
-.mobile-toggle-btn:hover {
-  background: var(--gold);
-  color: #000;
-}
+    .mobile-toggle-btn {
+      background: #fff;
+      color: var(--chai-red);
+      border: 2px solid var(--gold);
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
 
-/* Hide button on real mobile */
-@media (max-width: 768px) {
-  .mobile-toggle-btn { display: none; }
-}
+    .mobile-toggle-btn:hover {
+      background: var(--gold);
+      color: #000;
+    }
 
-/* ─────────────────────────────
-   FORCED MOBILE VIEW STYLES
-───────────────────────────── */
-body.force-mobile {
-  max-width: 420px;
-  margin: 0 auto;
-  background: #fdf8f0;
-  border-left: 8px solid #eee;
-  border-right: 8px solid #eee;
-}
+    @media (max-width: 768px) {
+      .mobile-toggle-btn { display: none; }
+    }
 
-/* Header layout */
-body.force-mobile .sticky-nav {
-  flex-direction: column;
-  gap: 0.6rem;
-  padding: 0.8rem;
-}
+    body.force-mobile {
+      max-width: 420px;
+      margin: 0 auto;
+      background: #fdf8f0;
+      border-left: 8px solid #eee;
+      border-right: 8px solid #eee;
+    }
 
-/* HERO section */
-body.force-mobile .hero {
-  height: 65vh;
-  min-height: 380px;
-  padding-top: 90px;
-}
+    body.force-mobile .sticky-nav {
+      flex-direction: column;
+      gap: 0.6rem;
+      padding: 0.8rem;
+    }
 
-/* Stop slider animation */
-body.force-mobile .hero-slider {
-  animation: none;
-}
+    body.force-mobile .hero {
+      height: 65vh;
+      min-height: 380px;
+      padding-top: 90px;
+    }
 
-/* One image full width */
-body.force-mobile .slide {
-  min-width: 100%;
-}
+    body.force-mobile .hero-slider {
+      animation: none;
+    }
 
-/* Remove side blur logos */
-body.force-mobile .hero-logo-left,
-body.force-mobile .hero-logo-right {
-  display: none;
-}
+    body.force-mobile .slide {
+      min-width: 100%;
+    }
 
-/* Products one column */
-body.force-mobile .grid {
-  grid-template-columns: 1fr;
-}
+    body.force-mobile .hero-logo-left,
+    body.force-mobile .hero-logo-right {
+      display: none;
+    }
 
-/* Button size */
-body.force-mobile .btn-primary {
-  font-size: 1.05rem;
-  padding: 0.9rem 1.6rem;
-}
+    body.force-mobile .grid {
+      grid-template-columns: 1fr;
+    }
 
+    body.force-mobile .btn-primary {
+      font-size: 1.05rem;
+      padding: 0.9rem 1.6rem;
+    }
   </style>
 </head>
 <body>
@@ -521,9 +505,9 @@ body.force-mobile .btn-primary {
       <a href="#recipe">Recipe</a>
       <a href="#addons">More Products</a>
       <a href="#wholesale">Wholesale</a>
-	  <button class="mobile-toggle-btn" onclick="toggleMobileView()">
-  📱 Mobile View
-</button>
+      <button class="mobile-toggle-btn" onclick="toggleMobileView()">
+        📱 Mobile View
+      </button>
     </div>
   </nav>
 
@@ -605,23 +589,23 @@ body.force-mobile .btn-primary {
       
       <div class="recipe-gallery">
         <div class="recipe-item">
-          <img src="amr.jpeg" alt="Amruttulya Chai Recipe">
+          <img src="amrutr.jpeg" alt="Amruttulya Chai Recipe">
           <p>Classic Amruttulya</p>
         </div>
         <div class="recipe-item">
-          <img src="jr.jpeg" alt="Jaggery Chai Recipe">
+          <img src="jaggeryr.jpeg" alt="Jaggery Chai Recipe">
           <p>Jaggery Chai</p>
         </div>
         <div class="recipe-item">
-          <img src="br.jpg" alt="Basundi Chai Recipe">
+          <img src="basundir.jpg" alt="Basundi Chai Recipe">
           <p>Basundi Chai</p>
         </div>
         <div class="recipe-item">
-          <img src="lr.jpg" alt="Lemon Tea Recipe">
+          <img src="lemonr.jpg" alt="Lemon Tea Recipe">
           <p>Lemon Tea</p>
         </div>
         <div class="recipe-item">
-          <img src="cr.jpg" alt="Coffee Recipe">
+          <img src="coffeer.jpg" alt="Coffee Recipe">
           <p>Coffee Premix</p>
         </div>
       </div>
@@ -637,7 +621,7 @@ body.force-mobile .btn-primary {
       <h2 style="text-align:center; font-size:3.5rem; color:var(--chai-red); margin:4rem 0 2.5rem;">Additional Products for Your Tea Setup</h2>
       <div class="grid">
         <div class="card">
-          <img src="statue.jpeg" alt="Tea Man / Chaiwala Statue">
+          <img src="statue.jpg" alt="Tea Man / Chaiwala Statue">
           <h3>Tea Man Statue</h3>
           <p>Attractive chaiwala statue – perfect branding for tea stalls & shops</p>
           <a href="#" onclick="openEnquiryModal('Tea Man Statue'); return false;" class="btn-primary" style="margin:1.5rem 0; width:100%; display:block;">Enquire on WhatsApp</a>
@@ -667,24 +651,6 @@ body.force-mobile .btn-primary {
 
   <footer>
     <p>© Bansuri Tea | Real Boiled Chai Experience – Brewed with Love in MAHARASHTRA</p>
-    
-    <div style="margin-top: 1.8rem; font-size: 1.1rem; opacity: 0.92;">
-      <a href="#" 
-         onclick="document.getElementById('admin-login').style.display='flex'; return false;" 
-         style="color: #c9a96e; text-decoration: none; margin: 0 1.2rem 0 0;">
-        Admin Panel
-      </a>
-      
-      <span style="color: #c9a96e; margin: 0 1.2rem;">•</span>
-      Established in 2014, we are a premium wholesale provider of tea and related products, known for quality, consistency, and refined taste. Our carefully curated blends and products are crafted to meet high standards, serving businesses that value excellence and reliability.
-
-With years of expertise and a passion for fine tea, we continue to deliver trusted tea solutions that elevate every cup.
-      <a href="#" 
-         onclick="alert('Bansuri Tea products are proudly manufactured and marketed by\\n\\nShreyas Tea and Foods\\n\\nAll rights, licenses, trademarks, and intellectual property related to this brand and products belong exclusively to Shreyas Tea and Foods.\\n\\nThis product is manufactured and sold by Shreyas Tea and Foods.'); return false;"
-         style="color: #c9a96e; text-decoration: none; font-weight: 500; padding: 0.5rem 1rem; border: 0px solid #c9a96e; border-radius: 8px; transition: all 0.3s;">
-        About Us
-      </a>
-    </div>
   </footer>
 
   <!-- Enquiry Modal -->
@@ -731,116 +697,173 @@ With years of expertise and a passion for fine tea, we continue to deliver trust
     </div>
   </div>
 
-  <!-- Admin Panels -->
-  <div id="admin-login">
-    <div class="box">
-      <h2 style="color:var(--chai-red);">Admin Login</h2>
-      <input type="password" id="admin-pass" placeholder="Enter password" style="width:100%; padding:1rem; margin:1.5rem 0; font-size:1.3rem; border:2px solid var(--gold); border-radius:8px;">
-      <button onclick="checkAdminLogin()" style="background:var(--chai-red); color:white; padding:1rem 3rem; border:none; border-radius:50px; font-size:1.3rem; cursor:pointer;">
-        Login
-      </button>
-      <p style="margin-top:1.5rem; color:#555; font-size:0.95rem;">Password is stored only in your browser</p>
-    </div>
-  </div>
-
-  <div id="admin-panel">
-    <div class="inner">
-      <button onclick="document.getElementById('admin-panel').style.display='none'" style="position:absolute; top:1rem; right:1.5rem; background:red; color:white; border:none; padding:0.8rem 1.5rem; border-radius:50px; cursor:pointer; font-weight:bold;">Close Admin</button>
-      
-      <h2 style="text-align:center; color:var(--gold); margin-bottom:2rem;">Bansuri Admin Panel (Local Changes Only)</h2>
-      <p style="text-align:center; color:#ccc; margin-bottom:2.5rem;">Changes saved in this browser only (localStorage). Visible immediately after save.</p>
-
-      <div id="admin-products"></div>
-
-      <div style="text-align:center; margin:5rem 0 2rem;">
-        <button onclick="saveAllChanges()" style="background:var(--gold); color:var(--dark); padding:1.2rem 3rem; border:none; border-radius:50px; font-size:1.3rem; cursor:pointer; margin-right:1rem;">
-          Save All Changes
-        </button>
-        <button onclick="resetAll()" style="background:#e63946; color:white; padding:1.2rem 3rem; border:none; border-radius:50px; font-size:1.3rem; cursor:pointer;">
-          Reset to Default
-        </button>
-      </div>
-    </div>
-  </div>
-
-  
   <script>
     // ──────────────────────────────────────────────
     //               PRODUCTS DATA
     // ──────────────────────────────────────────────
 
-    let products = JSON.parse(localStorage.getItem('bansuriProducts')) || [
+    let products = [
       {
         id: "all-in-one",
         name: "All-in-One Sample Pack",
         desc: "All-in-One Sample Pack – Best way to try our complete range!",
         price: 249,
-        oldPrice: null,
-        badge: "",
-        img: "all-in-one.jpeg",
-        whatsappText: "All-in-One Sample Pack (Amruttulya 3 + Jaggery 2 + Basundi 3 + Lemon 1 + Coffee 1)",
+        img: "amruttulya-product.jpeg",
         reviews: "320",
-        rating: "★★★★★"
+        rating: "★★★★★",
+        whatsappText: "All-in-One Sample Pack (Amruttulya 3 + Jaggery 2 + Basundi 3 + Lemon 1 + Coffee 1)",
+        sampleReviews: [
+          {
+            stars: "★★★★★",
+            text: "Great value! Tried all flavors and loved the variety. Perfect starter pack.",
+            meta: "Suresh • Thane • 1 week ago"
+          },
+          {
+            stars: "★★★★☆",
+            text: "All premixes are good, but Jaggery is my favorite. Fast shipping.",
+            meta: "Meena • Nagpur • 3 weeks ago"
+          },
+          {
+            stars: "★★★★★",
+            text: "Excellent for gifting. Everyone enjoyed the different chai options!",
+            meta: "Vikram • Mumbai • 2 days ago"
+          }
+        ]
       },
       {
         id: "amruttulya",
         name: 'Amruttulya Tea (Sample Pack: 3)',
         price: 99,
-        oldPrice: null,
-        badge: "",
         img: "am_powder.jpeg",
         desc: "Classic strong kadak chai – rich aroma & perfect color.",
         reviews: "842",
         rating: "★★★★☆",
-        whatsappText: "Amruttulya Tea Sample Pack (3 packs)"
+        whatsappText: "Amruttulya Tea Sample Pack (3 packs)",
+        sampleReviews: [
+          {
+            stars: "★★★★★",
+            text: "Authentic tapri taste at home! Strong and flavorful every time.",
+            meta: "Rajesh • Pune • 2 weeks ago"
+          },
+          {
+            stars: "★★★★☆",
+            text: "Good kadak chai, but needs a bit more boiling for perfect strength.",
+            meta: "Priya • Mumbai • 1 month ago"
+          },
+          {
+            stars: "★★★★★",
+            text: "My tea stall customers rave about this blend. Consistent quality.",
+            meta: "Anil Tea Stall • Nashik • 5 days ago"
+          }
+        ]
       },
       {
         id: "jaggery",
         name: 'Jaggery Tea (Sample Pack: 2 )',
         price: 149,
-        oldPrice: null,
-        badge: "",
         img: "jt.jpeg",
         desc: "Natural gud sweetness – healthy & traditional taste.",
         reviews: "1,214",
         rating: "★★★★★",
-        whatsappText: "Jaggery Tea Sample Pack (2 packs)"
+        whatsappText: "Jaggery Tea Sample Pack (2 packs)",
+        sampleReviews: [
+          {
+            stars: "★★★★★",
+            text: "Healthy alternative to sugar chai. Natural sweetness is perfect!",
+            meta: "Kavita • Aurangabad • 10 days ago"
+          },
+          {
+            stars: "★★★★☆",
+            text: "Love the gud flavor, though it's a bit milder than expected.",
+            meta: "Rohan • Kolhapur • 4 weeks ago"
+          },
+          {
+            stars: "★★★★★",
+            text: "Great for winter mornings. Feels traditional and wholesome.",
+            meta: "Sunita • Solapur • 3 days ago"
+          }
+        ]
       },
       {
         id: "basundi",
         name: 'Basundi Tea Premix (Sample Pack: 3 )',
         price: 99,
-        oldPrice: null,
-        badge: "",
         img: "am_tea.jpeg",
         desc: "Creamy rich basundi flavor – indulgent & sweet.",
         reviews: "567",
         rating: "★★★★☆",
-        whatsappText: "Basundi Tea Premix Sample Pack (3 packs)"
+        whatsappText: "Basundi Tea Premix Sample Pack (3 packs)",
+        sampleReviews: [
+          {
+            stars: "★★★★★",
+            text: "Creamy and dessert-like! Feels like basundi in chai form.",
+            meta: "Neha • Mumbai • 1 week ago"
+          },
+          {
+            stars: "★★★★☆",
+            text: "Rich flavor, but a tad too sweet for daily use. Good for special occasions.",
+            meta: "Amit • Pune • 2 months ago"
+          },
+          {
+            stars: "★★★★★",
+            text: "Kids love this indulgent chai. Perfect evening treat.",
+            meta: "Pooja • Nagpur • 6 days ago"
+          }
+        ]
       },
       {
         id: "lemon",
         name: 'Lemon Tea Premix (Sample Pack: 1 )',
         price: 99,
-        oldPrice: null,
-        badge: "",
         img: "lemon.jpg",
         desc: "Instant lemon tea magic – refreshing twist.",
         reviews: "412",
         rating: "★★★★☆",
-        whatsappText: "Lemon Tea Premix Sample Pack (1 pack)"
+        whatsappText: "Lemon Tea Premix Sample Pack (1 pack)",
+        sampleReviews: [
+          {
+            stars: "★★★★★",
+            text: "Refreshing and zesty! Great for hot summer days.",
+            meta: "Vivek • Thane • 3 weeks ago"
+          },
+          {
+            stars: "★★★★☆",
+            text: "Nice tangy flavor, but could use more lemon punch.",
+            meta: "Shreya • Kolhapur • 1 month ago"
+          },
+          {
+            stars: "★★★★★",
+            text: "Quick to make and so revitalizing after workouts.",
+            meta: "Rahul • Mumbai • 4 days ago"
+          }
+        ]
       },
       {
         id: "coffee",
         name: 'Coffee Premix (Sample Pack: 1 )',
         price: 99,
-        oldPrice: null,
-        badge: "",
         img: "coffee.jpg",
         desc: "Strong filter coffee – perfect for all seasons.",
         reviews: "689",
         rating: "★★★★½",
-        whatsappText: "Coffee Premix Sample Pack (1 pack)"
+        whatsappText: "Coffee Premix Sample Pack (1 pack)",
+        sampleReviews: [
+          {
+            stars: "★★★★★",
+            text: "Strong South Indian filter coffee taste. Wakes me up instantly!",
+            meta: "Lakshmi • Pune • 2 weeks ago"
+          },
+          {
+            stars: "★★★★☆",
+            text: "Good aroma, but I prefer it with less sugar. Easy to prepare.",
+            meta: "Kiran • Nagpur • 5 weeks ago"
+          },
+          {
+            stars: "★★★★★",
+            text: "Perfect for coffee lovers. Rich and bold flavor every time.",
+            meta: "Sandeep • Mumbai • 1 day ago"
+          }
+        ]
       }
     ];
 
@@ -888,21 +911,20 @@ With years of expertise and a passion for fine tea, we continue to deliver trust
       closeEnquiryModal();
     });
 
-    function showAllInOneDetails() {
-      alert(
-        "All-in-One Sample Pack – Perfect combo!\n\n" +
-        "Contains:\n" +
-        "• Amruttulya × 3 packs\n" +
-        "• Jaggery Chai × 2 packs\n" +
-        "• Basundi Chai × 3 packs\n" +
-        "• Lemon Tea × 1 pack\n" +
-        "• Coffee Premix × 1 pack\n\n" +
-        "Total: 10 packs\n" +
-        "Ideal for: new customers, small tea stalls, home/office tasting\n" +
-        "Brewing: 1 pack ≈ 80–100 strong cups (depending on strength)\n\n" +
-        "→ Best value • Most popular combo"
-      );
+    // ──────────────────────────────────────────────
+    //          REVIEWS TOGGLE FUNCTION
+    // ──────────────────────────────────────────────
+
+    function toggleReviews(productId) {
+      const reviewDiv = document.getElementById(`reviews-${productId}`);
+      if (reviewDiv) {
+        reviewDiv.style.display = reviewDiv.style.display === 'none' ? 'block' : 'none';
+      }
     }
+
+    // ──────────────────────────────────────────────
+    //               RENDER PRODUCTS
+    // ──────────────────────────────────────────────
 
     function renderProducts() {
       const grid = document.querySelector('#products .grid');
@@ -911,22 +933,23 @@ With years of expertise and a passion for fine tea, we continue to deliver trust
 
       products.forEach(prod => {
         const priceHTML = typeof prod.price === 'number' 
-  ? `
-    <div style="text-align:center;">
-      <span style="color:var(--chai-red); font-size:2rem; font-weight:700;">₹${prod.price}</span>
-      <div style="font-size:0.95rem; color:#666; margin-top:0.4rem; font-style:italic;">
-        * FREE DELIVERY *
-      </div>
-    </div>
-  `
-  : `
-    <div style="text-align:center;">
-      <span style="color:var(--chai-red); font-size:1.6rem; font-weight:600;">${prod.price}</span>
-      <div style="font-size:0.95rem; color:#666; margin-top:0.4rem; font-style:italic;">
-        * FREE DELIVERY *
-      </div>
-    </div>
-  `;
+          ? `
+            <div style="text-align:center;">
+              <span style="color:var(--chai-red); font-size:2rem; font-weight:700;">₹${prod.price}</span>
+              <div style="font-size:0.95rem; color:#666; margin-top:0.4rem; font-style:italic;">
+                * FREE DELIVERY *
+              </div>
+            </div>
+          `
+          : `
+            <div style="text-align:center;">
+              <span style="color:var(--chai-red); font-size:1.6rem; font-weight:600;">${prod.price}</span>
+              <div style="font-size:0.95rem; color:#666; margin-top:0.4rem; font-style:italic;">
+                * FREE DELIVERY *
+              </div>
+            </div>
+          `;
+
         const buttonsHTML = `
           <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 1.5rem; justify-content: center;">
             <a href="#" 
@@ -938,13 +961,26 @@ With years of expertise and a passion for fine tea, we continue to deliver trust
             
             ${prod.id === "all-in-one" ? `
               <a href="#" 
-                 onclick="showAllInOneDetails(); return false;"
+                 onclick="alert('This pack contains:\\n• Amruttulya × 3\\n• Jaggery × 2\\n• Basundi × 3\\n• Lemon × 1\\n• Coffee × 1\\n\\nBest value pack to try everything!'); return false;"
                  style="flex: 1 1 45%; min-width: 220px; max-width: 320px; padding: 1.1rem 1.8rem; font-size: 1.18rem; background: #2e7d32; color: white; border-radius: 50px; text-align: center; font-weight: 600; box-shadow: 0 5px 14px rgba(0,0,0,0.25);">
                 View Details
               </a>
             ` : ''}
           </div>
         `;
+
+        let reviewsHTML = '';
+        if (prod.sampleReviews && prod.sampleReviews.length > 0) {
+          prod.sampleReviews.forEach(review => {
+            reviewsHTML += `
+              <div class="review-item">
+                <span class="review-stars">${review.stars}</span>
+                "${review.text}"
+                <div class="review-meta">${review.meta}</div>
+              </div>
+            `;
+          });
+        }
 
         const card = document.createElement('div');
         card.className = 'card';
@@ -958,88 +994,28 @@ With years of expertise and a passion for fine tea, we continue to deliver trust
             <div style="display:flex; align-items:center; gap:1.2rem; margin:1.3rem 0; font-size:1.5rem; font-weight:700; flex-wrap:wrap; justify-content:center;">
               ${priceHTML}
             </div>
+
             ${prod.rating ? `
-              <div style="color:#ffb300; font-size:1.4rem; margin:0.9rem 0 1.3rem;">
-                ${prod.rating} <span style="color:#555; font-size:1rem;">(${prod.reviews} reviews)</span>
+              <div class="review-summary" style="color:#ffb300; font-size:1.4rem; margin:0.9rem 0 0.6rem;" 
+                   onclick="toggleReviews('${prod.id}')">
+                ${prod.rating} 
+                <span style="color:#555; font-size:1rem;">(${prod.reviews} reviews)</span>
+                <span style="font-size:0.9rem; margin-left:8px;">▼</span>
+              </div>
+              <div id="reviews-${prod.id}" class="reviews-expanded" style="display:none;">
+                <h4>Customer Reviews</h4>
+                ${reviewsHTML}
+                <p style="font-size:0.95rem; color:#666; margin-top:1.2rem; font-style:italic; text-align:center;">
+                  Showing 3 of ${prod.reviews} reviews • More on enquiry
+                </p>
               </div>
             ` : ''}
+
             ${buttonsHTML}
           </div>
         `;
         grid.appendChild(card);
       });
-    }
-
-    // ──────────────────────────────────────────────
-    //                   ADMIN FUNCTIONS
-    // ──────────────────────────────────────────────
-
-    const ADMIN_PASSWORD = "699166"; // CHANGE THIS TO YOUR OWN SECRET PASSWORD
-
-    function saveProducts() {
-      localStorage.setItem('bansuriProducts', JSON.stringify(products));
-    }
-
-    function renderAdminProducts() {
-      const container = document.getElementById("admin-products");
-      if (!container) return;
-
-      container.innerHTML = '<h3 style="color:var(--gold); margin:2rem 0 1rem;">Edit Product Prices</h3>';
-
-      products.forEach((prod, index) => {
-        const block = document.createElement('div');
-        block.style.cssText = 'background:#3d1f0f; padding:1.5rem; border-radius:12px; margin-bottom:1.8rem; border:1px solid var(--gold);';
-        block.innerHTML = `
-          <h4 style="margin:0 0 1rem; color:var(--gold);">${prod.name} (${prod.id})</h4>
-          
-          <div style="display:grid; grid-template-columns:1fr; gap:1.2rem;">
-            <div>
-              <label style="display:block; color:#ccc; margin-bottom:0.4rem;">Price (₹)</label>
-              <input type="number" value="${prod.price}" data-index="${index}" data-field="price" 
-                     style="width:100%; padding:0.8rem; font-size:1.1rem;">
-            </div>
-          </div>
-        `;
-        container.appendChild(block);
-      });
-
-      container.querySelectorAll('input').forEach(input => {
-        input.addEventListener('input', function() {
-          const index = parseInt(this.dataset.index);
-          const field = this.dataset.field;
-          let value = this.value.trim();
-          
-          if (field === 'price') {
-            value = value === '' ? null : Number(value);
-          }
-          
-          products[index][field] = value;
-        });
-      });
-    }
-
-    function saveAllChanges() {
-      saveProducts();
-      renderProducts();
-      alert("Changes saved! Refresh page if needed.");
-    }
-
-    function resetAll() {
-      if (confirm("Reset ALL products to original default values?")) {
-        localStorage.removeItem('bansuriProducts');
-        location.reload();
-      }
-    }
-
-    function checkAdminLogin() {
-      const pass = document.getElementById("admin-pass").value;
-      if (pass === ADMIN_PASSWORD) {
-        document.getElementById("admin-login").style.display = "none";
-        document.getElementById("admin-panel").style.display = "flex";
-        renderAdminProducts();
-      } else {
-        alert("Incorrect password!");
-      }
     }
 
     // ──────────────────────────────────────────────
@@ -1050,19 +1026,14 @@ With years of expertise and a passion for fine tea, we continue to deliver trust
 
     document.addEventListener('keydown', e => {
       if (e.key === "Escape") {
-        document.getElementById('admin-panel').style.display = 'none';
-        document.getElementById('admin-login').style.display = 'none';
         closeEnquiryModal();
       }
     });
-	
+
+    function toggleMobileView() {
+      document.body.classList.toggle('force-mobile');
+    }
   </script>
 
 </body>
 </html>
-
-
-
-
-
-
