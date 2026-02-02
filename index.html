@@ -24,6 +24,7 @@
       --deep-green: #1e3a2f;
       --cream: #fdf8f0;
       --dark: #2c1508;
+      --hero-bg: #3c1e0f;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
@@ -54,96 +55,165 @@
 
     h1, h2, h3 { font-family: 'Playfair Display', serif; }
     
+    /* ── Modern Sticky Nav ── */
     .sticky-nav {
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(165,42,42,0.96);
-      backdrop-filter: blur(10px);
+      background: rgba(30, 58, 47, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       z-index: 1000;
-      padding: 0.7rem 1.2rem;
+      padding: 1rem 5%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.28);
     }
+
     .logo-container { display: flex; align-items: center; }
     .logo { height: 58px; width: auto; margin-right: 1.2rem; transition: all 0.3s; }
     .logo:hover { transform: scale(1.06); }
 
-    .nav-links { display: flex; flex-wrap: wrap; gap: 1.1rem; }
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      align-items: center;
+    }
+
     .nav-links a {
       color: white;
-      text-decoration: none;
-      font-weight: 600;
+      font-weight: 500;
       font-size: 1.05rem;
-      transition: 0.3s;
-      padding: 0.4rem 0.3rem;
-      min-width: 44px;
+      text-decoration: none;
+      transition: all 0.3s;
+      position: relative;
     }
-    .nav-links a:hover { color: var(--gold); }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -6px;
+      left: 0;
+      background: var(--gold);
+      transition: width 0.35s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      background: var(--chai-red);
+      padding: 0.7rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(165,42,42,0.4);
+      text-decoration: none;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(165,42,42,0.55);
+    }
 
     section { padding: 6rem 1.2rem 4rem; }
 
+    /* ── Updated Hero – No slider, no overlay, no blur, animated text ── */
     .hero {
       position: relative;
-      height: 85vh;
-      min-height: 520px;
-      max-height: 820px;
-      padding-top: 60px;
-      overflow: hidden;
-      background: var(--dark);
-    }
-
-    .hero-slider {
-      position: absolute;
-      inset: 0;
+      height: 100vh;
+      min-height: 780px;
+      max-height: 960px;
       display: flex;
-      animation: slide 36s infinite ease-in-out;
-      z-index: 3;
+      align-items: center;
+      justify-content: center;
+      
+      /* Clean warm chai gradient – no image, no blur */
+      background: linear-gradient(135deg, #4a2c0f 0%, #6b3e17 50%, #8c5120 100%);
+      
+      overflow: hidden;
     }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(rgba(0,0,0,0.06), rgba(0,0,0,0.10));
+    .hero-content {
+      position: relative;
       z-index: 4;
+      text-align: center;
+      max-width: 980px;
+      padding: 2.5rem 4rem;
+      
+      /* Clean semi-opaque cream background – very readable, no blur */
+      background: rgba(255, 248, 232, 0.92);
+      border-radius: 24px;
+      box-shadow: 0 16px 60px rgba(0,0,0,0.22);
+      backdrop-filter: none;
     }
 
-    .hero-logo-blur {
-      position: absolute;
-      top: 50%;
-      width: 420px;
-      opacity: 0.28;
-      filter: blur(4px) drop-shadow(0 0 35px rgba(201,169,110,0.4));
-      z-index: 1;
-      pointer-events: none;
-      transform: translateY(-50%);
-    }
-    .hero-logo-left  { left: 2%; }
-    .hero-logo-right { right: 2%; }
-
-    .slide {
-      min-width: 50%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      background: var(--dark);
-      flex-shrink: 0;
-      image-rendering: crisp-edges;
+    .hero-title {
+      font-size: 6.2rem;
+      line-height: 1;
+      margin-bottom: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: white;
+      text-shadow: 0 6px 28px rgba(0,0,0,0.7);
+      
+      /* Subtle entrance animation */
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1.2s ease-out forwards 0.3s;
     }
 
-    @keyframes slide {
-      0%    { transform: translateX(0); }
-      20%   { transform: translateX(0); }
-      25%   { transform: translateX(-100%); }
-      45%   { transform: translateX(-100%); }
-      50%   { transform: translateX(-200%); }
-      70%   { transform: translateX(-200%); }
-      75%   { transform: translateX(-300%); }
-      95%   { transform: translateX(-300%); }
-      100%  { transform: translateX(-400%); }
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-title .highlight.animated-fill {
+      background: linear-gradient(
+        90deg,
+        #c9a96e 0%,
+        #ffdb58 20%,
+        #ffd700 40%,
+        #ffdb58 60%,
+        #c9a96e 80%,
+        #c9a96e 100%
+      );
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      animation: gradientFlow 5s linear infinite;
+    }
+
+    @keyframes gradientFlow {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: -200% 50%; }
+    }
+
+    .hero-subtitle {
+      font-size: 1.45rem;
+      color: #2c1508;
+      margin-bottom: 2.8rem;
+      font-weight: 400;
+      opacity: 0.95;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
     .btn-primary {
@@ -167,6 +237,40 @@
     .btn-primary:hover {
       transform: translateY(-5px);
       box-shadow: 0 14px 40px rgba(165,42,42,0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid var(--gold);
+      color: var(--gold);
+      padding: 1.1rem 2.6rem;
+      border-radius: 50px;
+      font-size: 1.25rem;
+      font-weight: 600;
+      transition: all 0.35s;
+    }
+
+    .btn-secondary:hover {
+      background: var(--gold);
+      color: var(--dark);
+      transform: translateY(-4px);
+    }
+
+    .hero-trust {
+      margin-top: 2.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      font-size: 1.1rem;
+      color: #4a2c0f;
+      font-weight: 500;
+    }
+
+    .hero-trust span {
+      background: rgba(255,255,255,0.5);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
     }
 
     .container { max-width: 1280px; margin: 0 auto; position: relative; z-index: 1; }
@@ -364,21 +468,19 @@
       .nav-links { 
         justify-content: center; 
         gap: 0.9rem; 
+        flex-wrap: wrap;
       }
       .nav-links a {
-        font-size: 1.1rem;
-        padding: 0.6rem 0.8rem;
-        min-width: 48px;
-        min-height: 48px;
-        display: flex;
-        align-items: center;
+        font-size: 1.05rem;
       }
       .logo { height: 48px; margin-right: 0; }
       .hero { 
-        height: 65vh;
-        min-height: 420px; 
-        padding-top: 50px; 
+        min-height: 100vh;
+        padding-top: 85px;
       }
+      .hero-title { font-size: 4.4rem; }
+      .hero-subtitle { font-size: 1.3rem; }
+      .hero-cta-group { flex-direction: column; gap: 1.2rem; }
       #products { padding: 5rem 1rem 4rem; }
       .grid { grid-template-columns: 1fr; gap: 2rem; }
       .card img { height: 260px; padding: 15px; }
@@ -392,47 +494,21 @@
 
       .why-carousel-track { animation-play-state: paused; }
 
-      .hero {
-        height: 80vh;
-        min-height: 480px;
-      }
-      .slide {
-        object-position: 50% 25%;
+      .hero-content { 
+        padding: 2rem 1.8rem; 
+        max-width: 95%; 
+        background: rgba(255, 248, 232, 0.95);
       }
     }
 
     @media (max-width: 480px) {
-      .hero { 
-        height: 70vh;
-        min-height: 380px;
-      }
-      .hero-logo-blur { 
-        width: 280px; 
-        opacity: 0.22; 
-      }
-      .logo { height: 44px; }
-      .nav-links a { font-size: 1rem; padding: 0.5rem 0.7rem; }
-      .card img { height: 220px; padding: 12px; }
-      .btn-primary { padding: 0.9rem 2rem; font-size: 1.1rem; min-height: 48px; }
-      h2 { font-size: 2.4rem !important; }
-      .why-card { flex: 0 0 290px; margin: 0 1rem; padding: 1.6rem 1.2rem; }
-      .why-icon { font-size: 3rem; }
-      .recipe-item { flex: 0 0 290px; }
-      .recipe-item img { height: 400px; }
-      .modal-content { padding: 1.6rem; }
+      .hero { min-height: 840px; }
+      .hero-title { font-size: 3.6rem; }
     }
 
     @media (max-width: 360px) {
-      .hero { 
-        height: 75vh;
-        min-height: 340px;
-      }
-      .hero-logo-blur { width: 240px; opacity: 0.18; }
-      .card img { height: 200px; padding: 10px; }
-      h3 { font-size: 1.8rem; }
-      .btn-primary { font-size: 1rem; padding: 0.9rem 1.4rem; min-height: 44px; }
-      .nav-links { gap: 0.6rem; }
-      .nav-links a { font-size: 0.95rem; padding: 0.5rem 0.6rem; }
+      .hero { min-height: 680px; }
+      .hero-title { font-size: 3.2rem; }
     }
 
     .mobile-toggle-btn {
@@ -470,22 +546,8 @@
     }
 
     body.force-mobile .hero {
-      height: 65vh;
-      min-height: 380px;
+      min-height: 760px;
       padding-top: 90px;
-    }
-
-    body.force-mobile .hero-slider {
-      animation: none;
-    }
-
-    body.force-mobile .slide {
-      min-width: 100%;
-    }
-
-    body.force-mobile .hero-logo-left,
-    body.force-mobile .hero-logo-right {
-      display: none;
     }
 
     body.force-mobile .grid {
@@ -500,72 +562,54 @@
 </head>
 <body>
 
+  <!-- Modern Sticky Navigation -->
   <nav class="sticky-nav">
     <div class="logo-container">
       <a href="#home">
         <img src="bansuri-logo.png" alt="Bansuri Tea Logo" class="logo">
       </a>
     </div>
+
     <div class="nav-links">
       <a href="#home">Home</a>
       <a href="#products">Products</a>
-      <a href="#why">Why Choose Us</a>
-      <a href="#recipe">Recipe</a>
-      <a href="#addons">More Products</a>
+      <a href="#why">Why Bansuri</a>
+      <a href="#recipe">Brew Guide</a>
+      <a href="#addons">Extras</a>
       <a href="#wholesale">Wholesale</a>
-      <button class="mobile-toggle-btn" onclick="toggleMobileView()">
-        📱 Mobile View
-      </button>
+      <a href="#products" class="nav-cta">Shop Now</a>
     </div>
+
+    <button class="mobile-toggle-btn" onclick="toggleMobileView()">📱 View</button>
   </nav>
 
+  <!-- Updated Hero Section – Clean, Animated Gradient Text -->
   <section class="hero" id="home">
-    <img src="bansuri-logo.png" class="hero-logo-blur hero-logo-left" alt="">
-    <img src="bansuri-logo.png" class="hero-logo-blur hero-logo-right" alt="">
-    <div class="hero-slider">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        Real Tapri <span class="highlight animated-fill">Kadak Chai</span><br>
+        <span style="font-size:0.65em; opacity:0.92;">Brewed Maharashtra Style</span>
+      </h1>
 
-      <!-- Slide 1 -->
-      <picture>
-        <source media="(max-width: 767px)" srcset="hero amrut.jpg">
-        <img src="hero-chai-2.jpeg" alt="Steaming kadak chai" class="slide">
-      </picture>
+      <p class="hero-subtitle">
+        Pure leaves • Hand-ground masala • No milk powder<br>
+        That same street-side soul — now in your kitchen.
+      </p>
 
-      <!-- Slide 2 -->
-      <picture>
-        <source media="(max-width: 767px)" srcset="hero jaggery.jpg">
-        <img src="hero-chai-1.jpeg" alt="Bansuri tea premix" class="slide">
-      </picture>
+      <div class="hero-cta-group">
+        <a href="#products" class="btn-primary hero-cta">
+          Discover Premixes →
+        </a>
+        <a href="#recipe" class="btn-secondary">
+          See Brewing Guide
+        </a>
+      </div>
 
-      <!-- Slide 3 -->
-      <picture>
-        <source media="(max-width: 767px)" srcset="hero lemon.jpg">
-        <img src="hero-chai-3.jpg" alt="Traditional tapri tea" class="slide">
-      </picture>
-
-      <!-- Slide 4 -->
-      <picture>
-        <source media="(max-width: 767px)" srcset="hero coffee.jpg">
-        <img src="hero-chai-4.jpeg" alt="Jaggery gudh chai" class="slide">
-      </picture>
-
-      <!-- Slide 5 -->
-      <picture>
-        <source media="(max-width: 767px)" srcset="all hero.jpg">
-        <img src="hero-chai-5.jpeg" alt="Basundi flavored chai" class="slide">
-      </picture>
-
-      <!-- Slide 6 -->
-      <picture>
-        <source media="(max-width: 767px)" srcset="hero-mobile-6.jpg">
-        <img src="hero-chai-6.jpeg" alt="Jaggery gudh chai" class="slide">
-      </picture>
-
-      <!-- Slide 7 -->
-      <picture>
-        <source media="(max-width: 767px)" srcset="hero-mobile-7.jpg">
-        <img src="hero-chai-7.jpeg" alt="Basundi flavored chai" class="slide">
-      </picture>
-
+      <div class="hero-trust">
+        <span>✓ Loved by 1000+ Tapris</span>
+        <span>✓ Free Delivery across Maharashtra</span>
+        <span>✓ Freshly Packed</span>
+      </div>
     </div>
   </section>
 
@@ -616,7 +660,7 @@
             <strong>Loved by Tea Lovers</strong>
             <p>Real boiled chai experience at home or shop</p>
           </div>
-          <!-- duplicates for smooth loop -->
+          <!-- duplicates -->
           <div class="why-card"><div class="why-icon">🍃</div><strong>100% Pure Tea</strong><p>No milk powder, no fillers — authentic tea leaves & handpicked masala</p></div>
           <div class="why-card"><div class="why-icon">🔥</div><strong>Perfect Kadak Tapri Taste</strong><p>Traditional Amruttulya blend — strong color, rich aroma</p></div>
           <div class="why-card"><div class="why-icon">₹</div><strong>High Margin, Low Cost</strong><p>Economical per cup — better profit for vendors</p></div>
@@ -742,10 +786,6 @@
   </div>
 
   <script>
-    // ──────────────────────────────────────────────
-    //               PRODUCTS DATA
-    // ──────────────────────────────────────────────
-
     let products = [
       {
         id: "all-in-one",
@@ -757,21 +797,9 @@
         rating: "★★★★★",
         whatsappText: "All-in-One Sample Pack (Amruttulya 3 + Jaggery 2 + Basundi 3 + Lemon 1 + Coffee 1)",
         sampleReviews: [
-          {
-            stars: "★★★★★",
-            text: "Great value! Tried all flavors and loved the variety. Perfect starter pack.",
-            meta: "Suresh • Sangali • 1 week ago"
-          },
-          {
-            stars: "★★★★☆",
-            text: "All premixes are good, but Jaggery is my favorite. Fast shipping.",
-            meta: "Meena • Jalna • 3 weeks ago"
-          },
-          {
-            stars: "★★★★★",
-            text: "Excellent for gifting. Everyone enjoyed the different chai options!",
-            meta: "Vikram • Malvan • 2 days ago"
-          }
+          { stars: "★★★★★", text: "Great value! Tried all flavors and loved the variety. Perfect starter pack.", meta: "Suresh • Sangali • 1 week ago" },
+          { stars: "★★★★☆", text: "All premixes are good, but Jaggery is my favorite. Fast shipping.", meta: "Meena • Jalna • 3 weeks ago" },
+          { stars: "★★★★★", text: "Excellent for gifting. Everyone enjoyed the different chai options!", meta: "Vikram • Malvan • 2 days ago" }
         ]
       },
       {
@@ -784,21 +812,9 @@
         rating: "★★★★☆",
         whatsappText: "Amruttulya Tea Sample Pack (3 packs)",
         sampleReviews: [
-          {
-            stars: "★★★★★",
-            text: "Authentic tapri taste at home! Strong and flavorful every time.",
-            meta: "Rajesh • Ratnagiri • 2 weeks ago"
-          },
-          {
-            stars: "★★★★☆",
-            text: "Good kadak chai, but needs a bit more boiling for perfect strength.",
-            meta: "Priya • Satara • 1 month ago"
-          },
-          {
-            stars: "★★★★★",
-            text: "My tea stall customers rave about this blend. Consistent quality.",
-            meta: "Anil Tea Stall • Nashik • 5 days ago"
-          }
+          { stars: "★★★★★", text: "Authentic tapri taste at home! Strong and flavorful every time.", meta: "Rajesh • Ratnagiri • 2 weeks ago" },
+          { stars: "★★★★☆", text: "Good kadak chai, but needs a bit more boiling for perfect strength.", meta: "Priya • Satara • 1 month ago" },
+          { stars: "★★★★★", text: "My tea stall customers rave about this blend. Consistent quality.", meta: "Anil Tea Stall • Nashik • 5 days ago" }
         ]
       },
       {
@@ -811,21 +827,9 @@
         rating: "★★★★★",
         whatsappText: "Jaggery Tea Sample Pack (2 packs)",
         sampleReviews: [
-          {
-            stars: "★★★★★",
-            text: "Healthy alternative to sugar chai. Natural sweetness is perfect!",
-            meta: "Kavita • Dharashuv • 10 days ago"
-          },
-          {
-            stars: "★★★★☆",
-            text: "Love the gud flavor, though it's a bit milder than expected.",
-            meta: "Rohan • Alibag • 4 weeks ago"
-          },
-          {
-            stars: "★★★★★",
-            text: "Great for winter mornings. Feels traditional and wholesome.",
-            meta: "Sunita • Solapur • 3 days ago"
-          }
+          { stars: "★★★★★", text: "Healthy alternative to sugar chai. Natural sweetness is perfect!", meta: "Kavita • Dharashuv • 10 days ago" },
+          { stars: "★★★★☆", text: "Love the gud flavor, though it's a bit milder than expected.", meta: "Rohan • Alibag • 4 weeks ago" },
+          { stars: "★★★★★", text: "Great for winter mornings. Feels traditional and wholesome.", meta: "Sunita • Solapur • 3 days ago" }
         ]
       },
       {
@@ -838,21 +842,9 @@
         rating: "★★★★☆",
         whatsappText: "Basundi Tea Premix Sample Pack (3 packs)",
         sampleReviews: [
-          {
-            stars: "★★★★★",
-            text: "Creamy and dessert-like! Feels like basundi in chai form.",
-            meta: "Neha • Amravati • 1 week ago"
-          },
-          {
-            stars: "★★★★☆",
-            text: "Rich flavor, but a tad too sweet for daily use. Good for special occasions.",
-            meta: "Amit • Pune • 2 months ago"
-          },
-          {
-            stars: "★★★★★",
-            text: "Kids love this indulgent chai. Perfect evening treat.",
-            meta: "Pooja • Nagpur • 6 days ago"
-          }
+          { stars: "★★★★★", text: "Creamy and dessert-like! Feels like basundi in chai form.", meta: "Neha • Amravati • 1 week ago" },
+          { stars: "★★★★☆", text: "Rich flavor, but a tad too sweet for daily use. Good for special occasions.", meta: "Amit • Pune • 2 months ago" },
+          { stars: "★★★★★", text: "Kids love this indulgent chai. Perfect evening treat.", meta: "Pooja • Nagpur • 6 days ago" }
         ]
       },
       {
@@ -865,21 +857,9 @@
         rating: "★★★★☆",
         whatsappText: "Lemon Tea Premix Sample Pack (1 pack)",
         sampleReviews: [
-          {
-            stars: "★★★★★",
-            text: "Refreshing and zesty! Great for hot summer days.",
-            meta: "Vivek • Malkapur • 3 weeks ago"
-          },
-          {
-            stars: "★★★★☆",
-            text: "Nice tangy flavor, but could use more lemon punch.",
-            meta: "Shreya • Jalgaon • 1 month ago"
-          },
-          {
-            stars: "★★★★★",
-            text: "Quick to make and so revitalizing after workouts.",
-            meta: "Rahul • Mumbai • 4 days ago"
-          }
+          { stars: "★★★★★", text: "Refreshing and zesty! Great for hot summer days.", meta: "Vivek • Malkapur • 3 weeks ago" },
+          { stars: "★★★★☆", text: "Nice tangy flavor, but could use more lemon punch.", meta: "Shreya • Jalgaon • 1 month ago" },
+          { stars: "★★★★★", text: "Quick to make and so revitalizing after workouts.", meta: "Rahul • Mumbai • 4 days ago" }
         ]
       },
       {
@@ -892,21 +872,9 @@
         rating: "★★★★½",
         whatsappText: "Coffee Premix Sample Pack (1 pack)",
         sampleReviews: [
-          {
-            stars: "★★★★★",
-            text: "Strong South Indian filter coffee taste. Wakes me up instantly!",
-            meta: "Lakshmi • Pune • 2 weeks ago"
-          },
-          {
-            stars: "★★★★☆",
-            text: "Good aroma, but I prefer it with less sugar. Easy to prepare.",
-            meta: "Kiran • Nagpur • 5 weeks ago"
-          },
-          {
-            stars: "★★★★★",
-            text: "Perfect for coffee lovers. Rich and bold flavor every time.",
-            meta: "Sandeep • Mumbai • 1 day ago"
-          }
+          { stars: "★★★★★", text: "Strong South Indian filter coffee taste. Wakes me up instantly!", meta: "Lakshmi • Pune • 2 weeks ago" },
+          { stars: "★★★★☆", text: "Good aroma, but I prefer it with less sugar. Easy to prepare.", meta: "Kiran • Nagpur • 5 weeks ago" },
+          { stars: "★★★★★", text: "Perfect for coffee lovers. Rich and bold flavor every time.", meta: "Sandeep • Mumbai • 1 day ago" }
         ]
       }
     ];
@@ -955,20 +923,12 @@
       closeEnquiryModal();
     });
 
-    // ──────────────────────────────────────────────
-    //          REVIEWS TOGGLE FUNCTION
-    // ──────────────────────────────────────────────
-
     function toggleReviews(productId) {
       const reviewDiv = document.getElementById(`reviews-${productId}`);
       if (reviewDiv) {
         reviewDiv.style.display = reviewDiv.style.display === 'none' ? 'block' : 'none';
       }
     }
-
-    // ──────────────────────────────────────────────
-    //               RENDER PRODUCTS
-    // ──────────────────────────────────────────────
 
     function renderProducts() {
       const grid = document.querySelector('#products .grid');
@@ -1061,10 +1021,6 @@
         grid.appendChild(card);
       });
     }
-
-    // ──────────────────────────────────────────────
-    //                   INITIALIZE
-    // ──────────────────────────────────────────────
 
     renderProducts();
 
