@@ -88,11 +88,24 @@
     .logo {
       height: 75px;
       width: auto;
-      transition: all 0.3s;
+      animation: 
+        float-bounce 6s ease-in-out infinite,
+        gentle-rock 18s ease-in-out infinite;
     }
 
     .logo:hover {
       transform: scale(1.06);
+    }
+
+    @keyframes float-bounce {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+
+    @keyframes gentle-rock {
+      0%   { transform: rotate(-1.8deg); }
+      50%  { transform: rotate(1.8deg); }
+      100% { transform: rotate(-1.8deg); }
     }
 
     section { padding: 6rem 1.2rem 4rem; }
@@ -146,17 +159,25 @@
 
     .hero-title .highlight.animated-fill {
       background: linear-gradient(90deg, #c9a96e 0%, #ffdb58 20%, #ffd700 40%, #ffdb58 60%, #c9a96e 80%, #c9a96e 100%);
-      background-size: 200% 100%;
+      background-size: 300% 100%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       color: transparent;
-      animation: gradientFlow 5s linear infinite;
+      display: inline-block;
+      animation: 
+        gradientFlow 5.5s linear infinite,
+        steam-rise 13s ease-in-out infinite;
     }
 
     @keyframes gradientFlow {
       0%   { background-position: 0% 50%; }
-      100% { background-position: -200% 50%; }
+      100% { background-position: 300% 50%; }
+    }
+
+    @keyframes steam-rise {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-16px); }
     }
 
     .hero-subtitle {
@@ -560,6 +581,7 @@
     </div>
   </section>
 
+  <!-- The rest of your original HTML remains exactly the same -->
   <section id="products" class="tea-vibe-bg">
     <div class="container">
       <h2 style="text-align:center; font-size:4.2rem; color:var(--chai-red); margin:4rem 0 3rem;">
