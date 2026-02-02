@@ -63,7 +63,6 @@
 
     h1, h2, h3 { font-family: 'Playfair Display', serif; }
     
-    /* Updated shorter centered logo-only header */
     .sticky-nav {
       position: fixed;
       top: 0;
@@ -110,7 +109,6 @@
 
     section { padding: 6rem 1.2rem 4rem; }
 
-    /* Hero with mobile fixes */
     .hero {
       position: relative;
       min-height: 85dvh;
@@ -252,7 +250,6 @@
       border-radius: 50px;
     }
 
-    /* Mobile adjustments */
     @media (max-width: 768px) {
       .sticky-nav { 
         padding: 0.6rem 1rem;
@@ -506,7 +503,7 @@
       font-weight: 700;
       cursor: pointer;
       font-size: 0.95rem;
-      display: none;   /* hidden by default now */
+      display: none;
     }
 
     .mobile-toggle-btn:hover {
@@ -581,7 +578,6 @@
     </div>
   </section>
 
-  <!-- The rest of your original HTML remains exactly the same -->
   <section id="products" class="tea-vibe-bg">
     <div class="container">
       <h2 style="text-align:center; font-size:4.2rem; color:var(--chai-red); margin:4rem 0 3rem;">
@@ -768,7 +764,9 @@
         sampleReviews: [
           { stars: "★★★★★", text: "Great value! Tried all flavors and loved the variety. Perfect starter pack.", meta: "Suresh • Sangali • 1 week ago" },
           { stars: "★★★★☆", text: "All premixes are good, but Jaggery is my favorite. Fast shipping.", meta: "Meena • Jalna • 3 weeks ago" },
-          { stars: "★★★★★", text: "Excellent for gifting. Everyone enjoyed the different chai options!", meta: "Vikram • Malvan • 2 days ago" }
+          { stars: "★★★★★", text: "Excellent for gifting. Everyone enjoyed the different chai options!", meta: "Vikram • Malvan • 2 days ago" },
+          { stars: "★★★★★", text: "Our tapri customers love the kadak taste across all variants. Consistent supply!", meta: "Shree Krishna Tea Stall • Thane, Mumbai • 10 days ago" },
+          { stars: "★★★★★", text: "Best pack to test for our small hotel. Basundi is a hit with evening crowd.", meta: "Hotel Sai Prasad • Aurangabad • 2 weeks ago" }
         ]
       },
       {
@@ -783,7 +781,10 @@
         sampleReviews: [
           { stars: "★★★★★", text: "Authentic tapri taste at home! Strong and flavorful every time.", meta: "Rajesh • Ratnagiri • 2 weeks ago" },
           { stars: "★★★★☆", text: "Good kadak chai, but needs a bit more boiling for perfect strength.", meta: "Priya • Satara • 1 month ago" },
-          { stars: "★★★★★", text: "My tea stall customers rave about this blend. Consistent quality.", meta: "Anil Tea Stall • Nashik • 5 days ago" }
+          { stars: "★★★★★", text: "My tea stall customers rave about this blend. Consistent quality.", meta: "Anil Tea Stall • Nashik • 5 days ago" },
+          { stars: "★★★★★", text: "Perfect kadak color and strong punch. Our regular customers ask for it daily now!", meta: "Yashoda Amruttulya • Pune • 8 days ago" },
+          { stars: "★★★★★", text: "Best Amruttulya premix we've used. No artificial feel, pure tapri swad.", meta: "Dolly Chai Tapri • Nagpur • 3 weeks ago" },
+          { stars: "★★★★☆", text: "Strong aroma, great for morning rush. Delivery was quick to Kolhapur.", meta: "Shivam Tea Centre • Kolhapur • 12 days ago" }
         ]
       },
       {
@@ -798,7 +799,9 @@
         sampleReviews: [
           { stars: "★★★★★", text: "Healthy alternative to sugar chai. Natural sweetness is perfect!", meta: "Kavita • Dharashuv • 10 days ago" },
           { stars: "★★★★☆", text: "Love the gud flavor, though it's a bit milder than expected.", meta: "Rohan • Alibag • 4 weeks ago" },
-          { stars: "★★★★★", text: "Great for winter mornings. Feels traditional and wholesome.", meta: "Sunita • Solapur • 3 days ago" }
+          { stars: "★★★★★", text: "Great for winter mornings. Feels traditional and wholesome.", meta: "Sunita • Solapur • 3 days ago" },
+          { stars: "★★★★★", text: "Our health-conscious customers prefer this. Gud gives real desi taste without guilt.", meta: "Guru Kripa Tea Stall • Mumbai Central • 1 week ago" },
+          { stars: "★★★★★", text: "Natural sweetness stands out. Selling fast in our evening tapri.", meta: "Mahalaxmi Chai • Aurangabad • 15 days ago" }
         ]
       },
       {
@@ -813,7 +816,8 @@
         sampleReviews: [
           { stars: "★★★★★", text: "Creamy and dessert-like! Feels like basundi in chai form.", meta: "Neha • Amravati • 1 week ago" },
           { stars: "★★★★☆", text: "Rich flavor, but a tad too sweet for daily use. Good for special occasions.", meta: "Amit • Pune • 2 months ago" },
-          { stars: "★★★★★", text: "Kids love this indulgent chai. Perfect evening treat.", meta: "Pooja • Nagpur • 6 days ago" }
+          { stars: "★★★★★", text: "Kids love this indulgent chai. Perfect evening treat.", meta: "Pooja • Nagpur • 6 days ago" },
+          { stars: "★★★★★", text: "Basundi flavor is spot on — creamy without milk powder. Crowd favorite now!", meta: "Vaishnavi Tea House • Nashik Road • 9 days ago" }
         ]
       },
       {
@@ -828,7 +832,8 @@
         sampleReviews: [
           { stars: "★★★★★", text: "Refreshing and zesty! Great for hot summer days.", meta: "Vivek • Malkapur • 3 weeks ago" },
           { stars: "★★★★☆", text: "Nice tangy flavor, but could use more lemon punch.", meta: "Shreya • Jalgaon • 1 month ago" },
-          { stars: "★★★★★", text: "Quick to make and so revitalizing after workouts.", meta: "Rahul • Mumbai • 4 days ago" }
+          { stars: "★★★★★", text: "Quick to make and so revitalizing after workouts.", meta: "Rahul • Mumbai • 4 days ago" },
+          { stars: "★★★★★", text: "Lemon twist sells like hot cakes in summer. Easy to prepare for rush hours.", meta: "Jai Bhavani Tea Stall • Thane • 2 weeks ago" }
         ]
       },
       {
@@ -843,7 +848,8 @@
         sampleReviews: [
           { stars: "★★★★★", text: "Strong South Indian filter coffee taste. Wakes me up instantly!", meta: "Lakshmi • Pune • 2 weeks ago" },
           { stars: "★★★★☆", text: "Good aroma, but I prefer it with less sugar. Easy to prepare.", meta: "Kiran • Nagpur • 5 weeks ago" },
-          { stars: "★★★★★", text: "Perfect for coffee lovers. Rich and bold flavor every time.", meta: "Sandeep • Mumbai • 1 day ago" }
+          { stars: "★★★★★", text: "Perfect for coffee lovers. Rich and bold flavor every time.", meta: "Sandeep • Mumbai • 1 day ago" },
+          { stars: "★★★★★", text: "Our morning coffee rush loves this premix. Strong and consistent.", meta: "New Kadak Coffee Corner • Kolhapur • 10 days ago" }
         ]
       }
     ];
@@ -935,19 +941,6 @@
           </div>
         `;
 
-        let reviewsHTML = '';
-        if (prod.sampleReviews && prod.sampleReviews.length > 0) {
-          prod.sampleReviews.forEach(review => {
-            reviewsHTML += `
-              <div class="review-item">
-                <span class="review-stars">${review.stars}</span>
-                "${review.text}"
-                <div class="review-meta">${review.meta}</div>
-              </div>
-            `;
-          });
-        }
-
         const card = document.createElement('div');
         card.className = 'card';
         card.innerHTML = `
@@ -961,11 +954,22 @@
               ${priceHTML}
             </div>
 
-            ${prod.rating ? `
-              <div class="review-summary" style="color:#ffb300; font-size:1.4rem; margin:0.9rem 0 0.6rem;" 
-                   onclick="alert('Reviews are shown on enquiry');">
+            ${prod.sampleReviews && prod.sampleReviews.length > 0 ? `
+              <div class="review-summary" style="color:#ffb300; font-size:1.4rem; margin:0.9rem 0 0.6rem; cursor:pointer;"
+                   onclick="let el = this.nextElementSibling; el.style.display = (el.style.display === 'block') ? 'none' : 'block';">
                 ${prod.rating} 
                 <span style="color:#555; font-size:1rem;">(${prod.reviews} reviews)</span>
+                <small style="color:#777; margin-left:8px;">(click to expand)</small>
+              </div>
+              <div class="reviews-expanded" style="display:none;">
+                <h4>What Tea Lovers & Stalls Say</h4>
+                ${prod.sampleReviews.map(review => `
+                  <div class="review-item">
+                    <span class="review-stars">${review.stars}</span>
+                    "${review.text}"
+                    <div class="review-meta">${review.meta}</div>
+                  </div>
+                `).join('')}
               </div>
             ` : ''}
 
