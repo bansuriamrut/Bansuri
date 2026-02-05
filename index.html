@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   
   <title>Bansuri Amruttulya Tea Premix | Jaggery Chai & Basundi Tea Powder Online Mumbai</title>
-  <meta name="description" content="Buy Bansuri Amruttulya tea premix, Jaggery tea powder & Basundi chai online. Authentic kadak tapri taste, pure tea, no milk powder. Perfect for home, hotels, cafes & tea stalls in Maharashtra."/>
+  <meta name="description" content="Buy Bansuri Amruttulya tea premix, Jaggery tea powder & Basundi chai online. Authentic kadak tapri taste, pure tea, no milk powder. Perfect for home, hotels, cafes & tea stalls."/>
   <meta name="keywords" content="amruttulya tea premix, jaggery tea powder, basundi tea premix, kadak chai premix, tapri style tea, masala chai powder buy online, amruttulya chai Mumbai, jaggery chaha, bansuri tea wholesale"/>
   <meta name="robots" content="index, follow"/>
   
@@ -41,7 +41,64 @@
       color: var(--dark);
       line-height: 1.7;
       padding-bottom: 120px;
+      position: relative;
+      min-height: 100vh;
     }
+
+    /* ────────────── CONTINUOUS FALLING 🍃 FROM TOP → BOTTOM EVERYWHERE ────────────── */
+    .falling-leaf {
+      position: fixed;
+      top: -15vh;
+      font-size: 3rem;
+      opacity: 0;
+      pointer-events: none;
+      z-index: -3;
+      left: var(--left-pos);
+      animation: fallForever linear infinite;
+      will-change: transform, opacity;
+    }
+
+    @keyframes fallForever {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+      5%   { opacity: 0.10; }
+      50%  { transform: translateY(60vh) rotate(180deg) translateX(var(--drift)); opacity: 0.10; }
+      95%  { opacity: 0.10; }
+      100% { transform: translateY(130vh) rotate(360deg) translateX(calc(var(--drift) * -0.5)); opacity: 0; }
+    }
+
+    /* Randomize starting position, speed, drift, size */
+    .falling-leaf:nth-child(1)  { --left-pos: 12%; --drift: 40px; animation-duration: 16s; animation-delay: 0s; }
+    .falling-leaf:nth-child(2)  { --left-pos: 28%; --drift: -50px; animation-duration: 21s; animation-delay: 1.5s; font-size: 4.2rem; opacity: 0.07; }
+    .falling-leaf:nth-child(3)  { --left-pos: 45%; --drift: 35px; animation-duration: 19s; animation-delay: 4s; }
+    .falling-leaf:nth-child(4)  { --left-pos: 62%; --drift: -45px; animation-duration: 24s; animation-delay: 7s; font-size: 2.4rem; }
+    .falling-leaf:nth-child(5)  { --left-pos: 78%; --drift: 55px; animation-duration: 18s; animation-delay: 9.5s; }
+    .falling-leaf:nth-child(6)  { --left-pos: 8%;  --drift: -30px; animation-duration: 26s; animation-delay: 2.5s; font-size: 3.8rem; opacity: 0.06; }
+    .falling-leaf:nth-child(7)  { --left-pos: 88%; --drift: 25px; animation-duration: 22s; animation-delay: 5.5s; }
+    .falling-leaf:nth-child(8)  { --left-pos: 35%; --drift: -60px; animation-duration: 29s; animation-delay: 11s; font-size: 2rem; }
+
+    /* Extra reinforcement in sections */
+    .hero::before, #products::before, #why::before, #recipe::before, #addons::before, #wholesale::before, footer::before {
+      content: "🍃 🍃 🍃 🍃 🍃";
+      position: absolute;
+      top: -80px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 4.5rem;
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: -2;
+      animation: fallForever 32s linear infinite;
+      white-space: nowrap;
+    }
+
+    .hero::before       { animation-delay: -3s; }
+    #products::before   { animation-delay: -6s; }
+    #why::before        { animation-delay: -9s; }
+    #recipe::before     { animation-delay: -12s; }
+    #addons::before     { animation-delay: -15s; }
+    #wholesale::before  { animation-delay: -18s; }
+    footer::before      { animation-delay: -21s; }
 
     .tea-vibe-bg {
       position: relative;
@@ -67,9 +124,9 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(30, 58, 47, 0.95);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(253, 248, 240, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       z-index: 1000;
       padding: 0.5rem 1rem;
       display: flex;
@@ -77,34 +134,73 @@
       justify-content: center;
       box-shadow: 0 3px 12px rgba(0,0,0,0.2);
       min-height: 52px;
+      overflow: hidden;
     }
 
     .logo-container {
       display: flex;
       align-items: center;
+      position: relative;
+      z-index: 2;
     }
 
     .logo {
       height: 75px;
       width: auto;
-      animation: 
-        float-bounce 6s ease-in-out infinite,
-        gentle-rock 18s ease-in-out infinite;
     }
 
     .logo:hover {
       transform: scale(1.06);
     }
 
-    @keyframes float-bounce {
-      0%, 100% { transform: translateY(0); }
-      50%      { transform: translateY(-10px); }
+    /* ────────────── LEFT → RIGHT SCROLLING TEXT ────────────── */
+    .marquee-header {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      right: 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--chai-red);
+      white-space: nowrap;
+      overflow: hidden;
+      pointer-events: none;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.25);
     }
 
-    @keyframes gentle-rock {
-      0%   { transform: rotate(-1.8deg); }
-      50%  { transform: rotate(1.8deg); }
-      100% { transform: rotate(-1.8deg); }
+    .marquee-header span {
+      display: inline-block;
+      padding-left: 100%;
+      padding-right: 8rem;
+      animation: scroll-right 42s linear infinite;
+    }
+
+    @keyframes scroll-right {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    @media (max-width: 1100px) {
+      .marquee-header {
+        font-size: 1.25rem;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .marquee-header {
+        font-size: 1.15rem;
+      }
+      .marquee-header span {
+        padding-right: 6rem;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .marquee-header {
+        display: none;
+      }
     }
 
     section { padding: 6rem 1.2rem 4rem; }
@@ -149,6 +245,26 @@
       opacity: 0;
       transform: translateY(30px);
       animation: fadeUp 1.2s ease-out forwards 0.3s;
+      position: relative;
+    }
+
+    .hero-title::after {
+      content: "~~~ ~~~ ~~~";
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 3.8rem;
+      color: rgba(255,255,255,0.35);
+      opacity: 0.6;
+      pointer-events: none;
+      animation: steamExtra 11s ease-in-out infinite;
+    }
+
+    @keyframes steamExtra {
+      0%   { transform: translateX(-50%) translateY(0) scale(1);   opacity: 0.5; }
+      50%  { transform: translateX(-50%) translateY(-80px) scale(1.35); opacity: 0.85; }
+      100% { transform: translateX(-50%) translateY(-160px) scale(1.7); opacity: 0; }
     }
 
     @keyframes fadeUp {
@@ -282,6 +398,8 @@
         gap: 0.8rem; 
         font-size: 1rem; 
       }
+
+      .falling-leaf { font-size: 2.2rem !important; opacity: 0.06; }
     }
 
     @media (max-width: 480px) {
@@ -311,9 +429,46 @@
       transition: all 0.35s;
       text-align: center;
       border: 2px solid var(--gold);
+      position: relative;
     }
-    .card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(165,42,42,0.22); }
-    .card img { width: 100%; height: 300px; object-fit: contain; padding: 18px; transition: transform 0.45s; }
+
+    .card:hover { 
+      transform: translateY(-10px); 
+      box-shadow: 0 20px 50px rgba(165,42,42,0.22); 
+    }
+
+    .card::after {
+      content: "☁️ ☁️ ☁️";
+      position: absolute;
+      bottom: 160px;
+      left: 50%;
+      transform: translateX(-50%) translateY(40px);
+      font-size: 2.2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease-out;
+      z-index: 2;
+    }
+
+    .card:hover::after {
+      opacity: 0.75;
+      animation: steamFloat 3.2s ease-in-out infinite;
+    }
+
+    @keyframes steamFloat {
+      0%   { transform: translateX(-50%) translateY(0);    opacity: 0.7; }
+      50%  { transform: translateX(-50%) translateY(-90px); opacity: 0.95; }
+      100% { transform: translateX(-50%) translateY(-180px); opacity: 0; }
+    }
+
+    .card img { 
+      width: 100%; 
+      height: 300px; 
+      object-fit: contain; 
+      padding: 18px; 
+      transition: transform 0.45s; 
+    }
+
     .card:hover img { transform: scale(1.04); }
 
     .review-summary {
@@ -537,9 +692,99 @@
       font-size: 1.05rem;
       padding: 0.9rem 1.6rem;
     }
+
+    /* 🌿 FLOATING LEAVES IN EMPTY AREAS */
+    .leaf-field {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    .leaf {
+      position: absolute;
+      font-size: var(--size);
+      opacity: var(--opacity);
+      left: var(--x);
+      top: var(--y);
+      animation: floatLeaf var(--speed) ease-in-out infinite;
+    }
+
+    @keyframes floatLeaf {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(var(--dx), var(--dy)) rotate(180deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    /* 🌿 CINEMATIC TEA GARDEN EFFECTS */
+    .vibe-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    /* 🍃 LEAF STYLE */
+    .auto-leaf {
+      position: absolute;
+      font-size: var(--size);
+      opacity: var(--opacity);
+      left: var(--x);
+      top: -10%;
+      animation: leafFall var(--speed) linear infinite;
+      filter: blur(0.4px);
+    }
+
+    /* ☁️ STEAM STYLE */
+    .auto-steam {
+      position: absolute;
+      font-size: var(--size);
+      opacity: var(--opacity);
+      left: var(--x);
+      bottom: -10%;
+      animation: steamRise var(--speed) ease-in-out infinite;
+    }
+
+    @keyframes leafFall {
+      0%   { transform: translateY(0) rotate(0deg); }
+      50%  { transform: translate(var(--drift), 60vh) rotate(180deg); }
+      100% { transform: translate(calc(var(--drift) * -1), 130vh) rotate(360deg); }
+    }
+
+    @keyframes steamRise {
+      0%   { transform: translateY(0) scale(0.8); opacity: 0; }
+      20%  { opacity: var(--opacity); }
+      100% { transform: translateY(-120vh) scale(1.6); opacity: 0; }
+    }
   </style>
 </head>
 <body>
+
+<!-- 🌿☁️ TEA GARDEN CINEMATIC LAYER -->
+<div class="vibe-layer" id="vibeLayer"></div>
+
+<!-- 🍃 EXTRA FLOATING LEAVES -->
+<div class="leaf-field">
+  <span class="leaf" style="--x:5%;  --y:20%; --dx:40px;  --dy:-60px; --speed:20s; --size:3rem; --opacity:0.06;">🍃</span>
+  <span class="leaf" style="--x:20%; --y:60%; --dx:-60px; --dy:40px; --speed:24s; --size:3.5rem; --opacity:0.05;">🍃</span>
+  <span class="leaf" style="--x:40%; --y:30%; --dx:70px;  --dy:-50px; --speed:28s; --size:2.5rem; --opacity:0.06;">🍃</span>
+  <span class="leaf" style="--x:60%; --y:70%; --dx:-80px; --dy:60px; --speed:32s; --size:4rem; --opacity:0.04;">🍃</span>
+  <span class="leaf" style="--x:80%; --y:40%; --dx:50px;  --dy:-70px; --speed:26s; --size:3rem; --opacity:0.05;">🍃</span>
+</div>
+
+  <!-- CONTINUOUS TOP → BOTTOM FALLING 🍃 LEAVES -->
+  <div class="falling-leaf">🍃</div>
+  <div class="falling-leaf">🍃</div>
+  <div class="falling-leaf">🍃</div>
+  <div class="falling-leaf">🍃</div>
+  <div class="falling-leaf">🍃</div>
+  <div class="falling-leaf">🍃</div>
+  <div class="falling-leaf">🍃</div>
+  <div class="falling-leaf">🍃</div>
+  <div class="falling-leaf">🍃</div>
+  <div class="falling-leaf">🍃</div>
 
   <nav class="sticky-nav">
     <div class="logo-container">
@@ -547,23 +792,34 @@
         <img src="bansuri-logo.png" alt="Bansuri Tea Logo" class="logo">
       </a>
     </div>
+
+    <div class="marquee-header">
+      <span>Bansuri Amruttulya – Authentic Chai, Rooted in Tradition</span>
+    </div>
   </nav>
 
   <section class="hero" id="home">
+    <div class="falling-leaves">
+      <div class="falling-leaf">🍃</div>
+      <div class="falling-leaf">🍃</div>
+      <div class="falling-leaf">🍃</div>
+      <div class="falling-leaf">🍃</div>
+      <div class="falling-leaf">🍃</div>
+    </div>
+
     <div class="hero-content">
       <h1 class="hero-title">
-        Real Tapri <span class="highlight animated-fill">Kadak Chai</span><br>
-        <span style="font-size:0.65em; opacity:0.92;">Brewed Maharashtra Style</span>
+        Real <span class="highlight animated-fill">Amruttulya Chai</span><br>
+        <span style="font-size:0.55em; opacity:0.92;">Brewed Maharashtra Style</span>
       </h1>
 
       <p class="hero-subtitle">
-        Pure leaves • Hand-ground masala • No milk powder<br>
-        That same street-side soul — now in your kitchen.
+        Amruttulya Chai Trusted by Professional Tea Business
       </p>
 
       <div class="hero-cta-group">
         <a href="#products" class="btn-primary hero-cta">
-          Discover Premixes →
+          Discover The Taste →
         </a>
         <a href="#recipe" class="btn-secondary">
           See Brewing Guide
@@ -571,8 +827,8 @@
       </div>
 
       <div class="hero-trust">
-        <span>✓ Loved by 1000+ Tapris</span>
-        <span>✓ Free Delivery across Maharashtra</span>
+        <span>✓ Loved by 1000+ Professionals</span>
+        <span>✓ Delivery across India </span>
         <span>✓ Freshly Packed</span>
       </div>
     </div>
@@ -595,7 +851,7 @@
         Why Choose <span style="color:var(--dark);">Bansuri</span> Tea?
       </h2>
       <p style="font-size:1.4rem; margin-bottom:2.5rem; max-width:860px; margin-left:auto; margin-right:auto; font-weight:500;">
-        Pure ingredients • Kadak tapri swad • Loved by tea stalls & lovers across Maharashtra
+        Pure ingredients • Kadak tapri swad • Loved by professionals •
       </p>
 
       <div class="why-carousel-container">
@@ -618,7 +874,7 @@
           <div class="why-card">
             <div class="why-icon">🏪</div>
             <strong>Trusted by Professionals</strong>
-            <p>Used daily by thousands of tea vendors in Maharashtra</p>
+            <p>Used daily by thousands of tea vendors</p>
           </div>
           <div class="why-card">
             <div class="why-icon">❤️</div>
@@ -629,8 +885,8 @@
           <div class="why-card"><div class="why-icon">🍃</div><strong>100% Pure Tea</strong><p>No milk powder, no fillers — authentic tea leaves & handpicked masala</p></div>
           <div class="why-card"><div class="why-icon">🔥</div><strong>Perfect Kadak Tapri Taste</strong><p>Traditional Amruttulya blend — strong color, rich aroma</p></div>
           <div class="why-card"><div class="why-icon">₹</div><strong>High Margin, Low Cost</strong><p>Economical per cup — better profit for vendors</p></div>
-          <div class="why-card"><div class="why-icon">🏪</div><strong>Trusted by Professionals</strong><p>Used daily by thousands of tea vendors in Maharashtra</p></div>
-          <div class="why-card"><div class="why-icon">❤️</div><strong>Loved by Tea Lovers</strong><p>Real boiled chai experience at home or shop</p></div>
+          <div class="why-card"><div class="why-icon">🏪</div><strong>Trusted by Professionals</strong><p>Used daily by thousands of tea vendors </p></div>
+          <div class="why-card"><div class="why-icon">❤️</div><strong>Loved by Tea Lovers</strong><p>Real boiled chai experience at shop</p></div>
         </div>
       </div>
     </div>
@@ -664,7 +920,7 @@
       </div>
 
       <p style="text-align:center; font-size:1.45rem; font-style:italic; margin:2.5rem 0; color:var(--chai-red);">
-        Boil – Brew – Enjoy the real tapri experience ☕
+        Boil – Brew – Enjoy the real Amruttulya Chai experience ☕
       </p>
     </div>
   </section>
@@ -703,7 +959,7 @@
   </section>
 
   <footer>
-    <p>© Bansuri Tea | Real Boiled Chai Experience – Brewed with Love in MAHARASHTRA</p>
+    <p>© Bansuri Tea | Real Boiled Amruttulya Chai Experience – Brewed with Love ☕ </p>
   </footer>
 
   <!-- Enquiry Modal -->
@@ -736,8 +992,8 @@
         </div>
         
         <div class="form-group">
-          <label for="customer-address">Delivery Address (optional)</label>
-          <textarea id="customer-address" rows="3" placeholder="Full address with pincode"></textarea>
+          <label for="customer-address">Delivery Address *</label>
+          <textarea id="customer-address" rows="3" placeholder="Full address with pincode" required></textarea>
         </div>
         
         <div class="form-group">
@@ -854,7 +1110,7 @@
       }
     ];
 
-    const YOUR_WHATSAPP_NUMBER = "919552855040";
+    const YOUR_WHATSAPP_NUMBER = "918459023722";
 
     let currentProductName = "";
 
@@ -872,25 +1128,57 @@
     document.getElementById("enquiry-form").addEventListener("submit", function(e) {
       e.preventDefault();
 
-      const name    = document.getElementById("customer-name").value.trim();
-      const phone   = document.getElementById("customer-phone").value.trim();
+      const name         = document.getElementById("customer-name").value.trim();
+      const phone        = document.getElementById("customer-phone").value.trim();
       const businessType = document.getElementById("business-type").value;
-      const address = document.getElementById("customer-address").value.trim();
-      const message = document.getElementById("customer-message").value.trim();
+      const address      = document.getElementById("customer-address").value.trim();
+      const message      = document.getElementById("customer-message").value.trim();
 
-      if (!name || !phone || phone.length !== 10 || isNaN(phone) || !businessType) {
-        alert("Please fill Name, 10-digit Mobile Number, and Business Type");
+      // Clear previous error styles
+      const inputs = ["customer-name", "customer-phone", "business-type", "customer-address"];
+      inputs.forEach(id => {
+        document.getElementById(id).style.borderColor = "#ddd";
+      });
+
+      let errors = [];
+
+      if (!name) {
+        errors.push("Please enter your Name");
+        document.getElementById("customer-name").style.borderColor = "red";
+      }
+
+      if (!phone) {
+        errors.push("Please enter your Mobile Number");
+        document.getElementById("customer-phone").style.borderColor = "red";
+      } else if (phone.length !== 10 || isNaN(phone)) {
+        errors.push("Mobile Number must be exactly 10 digits (numbers only)");
+        document.getElementById("customer-phone").style.borderColor = "red";
+      }
+
+      if (!businessType) {
+        errors.push("Please select your Business Type");
+        document.getElementById("business-type").style.borderColor = "red";
+      }
+
+      if (!address) {
+        errors.push("Please enter Delivery Address");
+        document.getElementById("customer-address").style.borderColor = "red";
+      }
+
+      if (errors.length > 0) {
+        alert("Please fix the following:\n\n• " + errors.join("\n• "));
         return;
       }
 
+      // All required fields are filled → proceed
       let text = `Hello Bansuri Tea! ☕\n\n`;
       text += `Interested in: ${currentProductName}\n\n`;
       text += `Name: ${name}\n`;
       text += `Mobile: ${phone}\n`;
       text += `Business Type: ${businessType}\n`;
-      if (address) text += `Address: ${address}\n`;
+      text += `Address: ${address}\n`;
       if (message) text += `Message: ${message}\n\n`;
-      text += `Please share current price, availability, shipping charges to Maharashtra and payment options.\nThank you!`;
+      text += `Please share current price, availability, shipping charges and payment options.\nThank you!`;
 
       const waUrl = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
       window.open(waUrl, "_blank");
@@ -991,6 +1279,7 @@
     function toggleMobileView() {
       document.body.classList.toggle('force-mobile');
     }
+	
   </script>
 
 </body>
